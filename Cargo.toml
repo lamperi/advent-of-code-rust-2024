@@ -20,6 +20,10 @@ today = ["chrono"]
 test_lib = []
 
 [dependencies]
+regex = "1.11.1"
+# Graph
+num = "0.4.3"
+indexmap = "2.7.0"
 
 # Template dependencies
 chrono = { version = "0.4.38", optional = true }
