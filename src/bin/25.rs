@@ -3,13 +3,22 @@ use std::iter::zip;
 advent_of_code::solution!(25);
 
 pub fn part_one(input: &str) -> Option<i32> {
-    let schematics: Vec<_> = input.split("\n\n").collect();
+    let mut locks = Vec::new();
+    let mut keys = Vec::new();
+    for schematics in input.split("\n\n") {
+        if schematics.starts_with('#') {
+            locks.push(schematics);
+        } else {
+            keys.push(schematics);
+        }
+    }
     let mut count = 0;
-    for (i, x) in schematics.iter().enumerate() {
-        for y in &schematics[i+1..] {
-            if zip(x.chars(), y.chars()).all(|(xc, yc)| xc != '#' || yc != '#') {
+    for key in &keys {
+        for lock in &locks {
+            if zip(key.bytes(), lock.bytes()).all(|(xc, yc)| xc != b'#' || yc != b'#') {
                 count += 1;
             }
+
         }
     }
     Some(count)
